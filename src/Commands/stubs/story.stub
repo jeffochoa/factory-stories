@@ -1,0 +1,22 @@
+<?php
+
+namespace DummyNamespace;
+
+use FactoryStories\Contracts\FactoryStoryContract;
+
+class DummyClass implements FactoryStoryContract
+{
+
+    /**
+     * Here you can create your complex model factory
+     * logic
+     *
+     * @param array $params Array of params
+     *
+     * @return Mixed
+     */
+    public function handle($params = [])
+    {
+        #
+    }
+}

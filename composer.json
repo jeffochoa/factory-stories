@@ -1,0 +1,20 @@
+{
+    "name": "jeffochoa/factory-stories",
+    "description": "Create model factory stories inLaravel 5.*",
+    "type": "Library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jeff Ochoa"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "FactoryStories\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "require": {}
+}
