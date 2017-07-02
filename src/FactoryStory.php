@@ -55,7 +55,7 @@ class FactoryStory
     public function create($params = [])
     {
         if (is_int($this->times) && $this->times > 1) {
-            return collect(range(0, $this->times))
+            return collect(range(1, $this->times))
                 ->transform(function ($index) use ($params) {
                     return (new $this->storyClass)->handle($params);
                 });
