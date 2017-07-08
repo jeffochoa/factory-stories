@@ -7,27 +7,20 @@ use FactoryStories\Contracts\FactoryStoryContract;
 /**
 * Factory Story class
 */
-class FactoryStory
+abstract class FactoryStory
 {
-
-    /**
-     * StoryClass class name
-     *
-     * @var ::class
-     */
-    protected $storyClass;
 
     protected $times = 1;
 
     /**
-     * Build new FactoryStory object
+     * Here you can create your complex model factory
+     * logic
      *
-     * @param FactoryStoryContract $storyClass
+     * @param array $params Array of params
+     *
+     * @return Mixed
      */
-    public function __construct(FactoryStoryContract $storyClass)
-    {
-        $this->storyClass = $storyClass;
-    }
+    abstract public function build($params = []);
 
     /**
      * How many instance of the $storyClass should
@@ -45,8 +38,7 @@ class FactoryStory
     }
 
     /**
-     * Run handle method on $this->storyClass and
-     * return the result
+     * Run handle method and returns the result
      *
      * @param  array  $params Array of custom params
      *
@@ -57,10 +49,10 @@ class FactoryStory
         if (is_int($this->times) && $this->times > 1) {
             return collect(range(1, $this->times))
                 ->transform(function ($index) use ($params) {
-                    return (new $this->storyClass)->handle($params);
+                    return $this->build($params);
                 });
         }
 
-        return (new $this->storyClass)->handle($params);
+        return $this->build($params);
     }
 }

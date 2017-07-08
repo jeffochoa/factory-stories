@@ -2,11 +2,10 @@
 
 namespace DummyNamespace;
 
-use FactoryStories\Contracts\FactoryStoryContract;
+use FactoryStories\FactoryStory;
 
-class DummyClass implements FactoryStoryContract
+class DummyClass extends FactoryStory
 {
-
     /**
      * Here you can create your complex model factory
      * logic
@@ -15,7 +14,7 @@ class DummyClass implements FactoryStoryContract
      *
      * @return Mixed
      */
-    public function handle($params = [])
+    public function build($params = [])
     {
         #
     }
