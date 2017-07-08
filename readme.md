@@ -31,18 +31,16 @@ Of course, You allways can extract this to it's own method in a helper class, bu
 After install You'll have access to a a new artisan command
 
     $ php artisan make:factory-story SomeClassName
-After run this command You should see the new file under the Tests\Stories directory
+After run this command You should see the new file under the "database/" directory
 
     <?php
 
-    namespace Tests\Stories;
-
     use App\Models\User;
-    use FactoryStories\Contracts\FactoryStoryContract;
+    use FactoryStories\FactoryStory;
 
-    class TestStory implements FactoryStoryContract
+    class TestStory extends FactoryStory
     {
-        public function handle($params = [])
+        public function build($params = [])
         {
             // here you can add your complex model factories with their relationships
             return factory(User::class)->create();
@@ -75,7 +73,7 @@ Consider this UserTestClass.php
 
     }
 
-You just need to use the story() helper and call the create() method on it
+You just need to create a new instance of the Story Class and call the create() method on it
 
     <?php
 
@@ -93,8 +91,31 @@ You just need to use the story() helper and call the create() method on it
         /** @test **/
         public function your_test_method()
         {
-             $article = story(\Tests\Stories\ActiveUserArticleWithTags::class, 5)
-                 ->create();
+             $article = (new ActiveUserArticleWithTags)
+                ->times(5)->create();
         }
     }
-This will return a collection of 5 items  with the object that You return in the handle() method of the custom story class.
+This will return a collection of 5 items  with the object that You return in the build() method of the custom story class.
+
+Laravel 5.4 includes "Real time facades", this allows you to use the Story Class as a facade as well Just by adding the ` use Facades\{YourClassName}` at the top of your file
+
+    <?php
+
+    namespace Tests\Feature;
+
+    use Tests\TestCase;
+    use Facades\ActiveUserArticleWithTags;
+    use Illuminate\Foundation\Testing\WithoutMiddleware;
+    use Illuminate\Foundation\Testing\DatabaseMigrations;
+    use Illuminate\Foundation\Testing\DatabaseTransactions;
+
+    class ManageUsersTest extends TestCase
+    {
+        use DatabaseMigrations;
+
+        /** @test **/
+        public function your_test_method()
+        {
+             $article = ActiveUserArticleWithTags::times(5)->create();
+        }
+    }
