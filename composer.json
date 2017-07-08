@@ -1,9 +1,13 @@
 {
     "name": "jeffochoa/factory-stories",
     "description": "Create model factory stories inLaravel 5.*",
-    "type": "Library",
+    "keywords": [
+        "laravel",
+        "factory"
+    ],
+    "homepage": "https://github.com/jeffochoa/factory-stories",
     "license": "MIT",
-    "version": "0.0.1",
+    "version": "1.0",
     "authors": [
         {
             "name": "Jeff Ochoa"
