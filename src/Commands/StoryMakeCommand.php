@@ -2,7 +2,9 @@
 
 namespace FactoryStories\Commands;
 
+use Illuminate\Support\Composer;
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Filesystem\Filesystem;
 
 class StoryMakeCommand extends GeneratorCommand
 {
@@ -12,6 +14,13 @@ class StoryMakeCommand extends GeneratorCommand
      * @var string
      */
     protected $name = 'make:factory-story';
+
+    /**
+     * The Composer instance.
+     *
+     * @var \Illuminate\Support\Composer
+     */
+    protected $composer;
 
     /**
      * The console command description.
@@ -28,6 +37,31 @@ class StoryMakeCommand extends GeneratorCommand
      * @var string
      */
     protected $type = 'FactoryStory';
+
+    /**
+     * Create a new migration install command instance.
+     *
+     * @param  \Illuminate\Filesystem\Filesystem  $files
+     * @param  \Illuminate\Support\Composer  $composer
+     * @return void
+     */
+    public function __construct(Filesystem $files, Composer $composer)
+    {
+        parent::__construct($files);
+
+        $this->composer = $composer;
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return void
+     */
+    public function fire()
+    {
+        parent::fire();
+        $this->composer->dumpAutoloads();
+    }
 
     /**
      * Get the stub file for the generator.
@@ -47,30 +81,17 @@ class StoryMakeCommand extends GeneratorCommand
      */
     protected function getPath($name)
     {
-        $name = str_replace_first($this->rootNamespace(), '', $name);
-
-        return $this->laravel->basePath().'/tests'.str_replace('\\', '/', $name).'.php';
+        return $this->laravel->databasePath().'/stories/'.$name.'.php';
     }
 
     /**
-     * Get the default namespace for the class.
+     * Parse the class name and format according to the root namespace.
      *
-     * @param  string  $rootNamespace
+     * @param  string  $name
      * @return string
      */
-    protected function getDefaultNamespace($rootNamespace)
+    protected function qualifyClass($name)
     {
-
-        return $rootNamespace.'\Stories';
-    }
-
-    /**
-     * Get the root namespace for the class.
-     *
-     * @return string
-     */
-    protected function rootNamespace()
-    {
-        return 'Tests';
+        return $name;
     }
 }
