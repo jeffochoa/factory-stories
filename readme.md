@@ -6,7 +6,7 @@ inspired by the [Model Factories podcast](http://twentypercent.fm/model-factorie
 ## Installing ##
     composer require jeffochoa/factory-stories
 
-Edit your app.php file
+Add the servic provider to the app.php file
 
     FactoryStories\Providers\StoryFactoryServiceProvider::class
 
