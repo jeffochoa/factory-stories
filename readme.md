@@ -1,5 +1,5 @@
 ## Laravel Model Factory Stories ##
-This package allows You to create complex model factories in separated classes reusable among Your tests classes.
+This package allows you to create complex model factories in separate classes reusable among your tests classes.
 
 inspired by the [Model Factories podcast](http://twentypercent.fm/model-factories) on [twentypercent.fm](http://twentypercent.fm)
 
@@ -9,14 +9,14 @@ inspired by the [Model Factories podcast](http://twentypercent.fm/model-factorie
 $ composer require jeffochoa/factory-stories
 ```
 
-Add the servic provider to the app.php file
+Add the service provider to the app.php file
 
 ```php
 FactoryStories\Providers\StoryFactoryServiceProvider::class
 ```
 
 ## The problem ##
-Let's say You have to do some tests over articles created with certain conditions like:
+Let's say you have to do some tests over articles created with certain conditions like:
 
 ```
 // Active articles, from Active Users, with tags attached
@@ -35,17 +35,17 @@ $article->tags()->attach($tags->pluck('id')->toArray());
 
 ... or something like that.
 
-Of course, You allways can extract this to it's own method in a helper class, but sometimes You may want to have each of this kind of "stories" in it's own class, even  more when you need to add some extra methods to generate more complex data.
+Of course, you can always extract this to its own method in a helper class, but sometimes you may want to have each of these kinds of "stories" in its own class, even more when you need to add some extra methods to generate more complex data.
 
 ## Creating new Factory Stories ##
 
-After install You'll have access to a a new artisan command
+After installing this package, you'll have access to a new artisan command
 
 ```bash
 $ php artisan make:factory-story SomeClassName
 ```
 
-After run this command You should see the new file under the "database/" directory
+After you run this command you should see the new file under the "database/" directory
 
 ```php
 <?php
@@ -116,9 +116,9 @@ class ManageUsersTest extends TestCase
 }
 ```
 
-This will return a collection of 5 items  with the object that You return in the build() method of the custom story class.
+This will return a collection of 5 items with the object that you return in the build() method of the custom story class.
 
-Laravel 5.4 includes "Real time facades", this allows you to use the Story Class as a facade as well Just by adding the `use Facades\{YourClassName}` at the top of your file
+Laravel 5.4 includes "Real time facades", this allows you to use the Story Class as a facade as well just by adding the `use Facades\{YourClassName}` at the top of your file
 
 ```php
 <?php
