@@ -2,6 +2,7 @@
 
 namespace FactoryStories;
 
+use Illuminate\Support\Collection;
 use FactoryStories\Contracts\FactoryStoryContract;
 
 /**
@@ -32,7 +33,7 @@ abstract class FactoryStory
      */
     public function times($amount)
     {
-        $this->times = $amount;
+        $this->times = (int)$amount;
 
         return $this;
     }
@@ -46,13 +47,12 @@ abstract class FactoryStory
      */
     public function create($params = [])
     {
-        if (is_int($this->times) && $this->times > 1) {
-            return collect(range(1, $this->times))
-                ->transform(function ($index) use ($params) {
-                    return $this->build($params);
-                });
+        if ($this->times <= 1) {
+            return $this->build($params);
         }
-
-        return $this->build($params);
+        
+        return Collection::times($this->times, function () use ($params) {
+            return $this->build($params);
+        });
     }
 }
