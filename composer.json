@@ -7,7 +7,7 @@
     ],
     "homepage": "https://github.com/jeffochoa/factory-stories",
     "license": "MIT",
-    "version": "1.0",
+    "version": "1.1",
     "authors": [
         {
             "name": "Jeff Ochoa"
@@ -18,5 +18,12 @@
             "FactoryStories\\": "src/"
         }
     },
-    "require": {}
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "FactoryStories\\Providers\\ServiceProvider"
+            ]
+        }
+    }
 }
