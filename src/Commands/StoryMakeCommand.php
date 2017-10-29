@@ -29,8 +29,6 @@ class StoryMakeCommand extends GeneratorCommand
      */
     protected $description = 'Create a new Factory Story class';
 
-    /**actory tory class';
-
     /**
      * The type of class being generated.
      *

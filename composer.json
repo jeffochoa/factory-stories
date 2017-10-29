@@ -1,6 +1,6 @@
 {
     "name": "jeffochoa/factory-stories",
-    "description": "Create model factory stories inLaravel 5.*",
+    "description": "Create model factory stories in Laravel 5.*",
     "keywords": [
         "laravel",
         "factory"
