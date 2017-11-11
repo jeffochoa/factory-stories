@@ -18,6 +18,16 @@ class FactoryTest extends TestCase
     }
 
     /** @test */
+    public function building_a_collection_containing_one_instance()
+    {
+        $collection = (new UserFactoryStory)->times(1)->create();
+
+        $this->assertInstanceOf(Collection::class, $collection);
+        $this->assertCount(1, $collection);
+        $this->assertContainsOnlyInstancesOf(User::class, $collection);
+    }
+
+    /** @test */
     public function building_a_collection_containing_multiple_instances()
     {
         $collection = (new UserFactoryStory)->times(5)->create();        
