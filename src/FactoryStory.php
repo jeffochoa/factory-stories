@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 */
 abstract class FactoryStory
 {
-    protected $times = 1;
+    protected $times = 0;
 
     /**
      * Here you can create your complex model factory
@@ -45,7 +45,7 @@ abstract class FactoryStory
      */
     public function create($params = [])
     {
-        if ($this->times <= 1) {
+        if ($this->times < 1) {
             return $this->build($params);
         }
 
