@@ -18,7 +18,16 @@
             "FactoryStories\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^6.4",
+        "orchestra/testbench": "^3.5"
+    },
     "extra": {
         "laravel": {
             "providers": [
