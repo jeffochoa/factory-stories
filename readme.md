@@ -9,11 +9,13 @@ inspired by the [Model Factories podcast](http://twentypercent.fm/model-factorie
 $ composer require jeffochoa/factory-stories
 ```
 
-Add the service provider to the app.php file
+If you are using Laravel 5.4 or lower, add the service provider to the app.php file:
 
 ```php
 FactoryStories\Providers\StoryFactoryServiceProvider::class
 ```
+
+On Laravel 5.5+, the provider will be discovered automatically.
 
 ## The problem ##
 Let's say you have to do some tests over articles created with certain conditions like:
