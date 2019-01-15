@@ -12,7 +12,7 @@ class FactoryTest extends TestCase
     /** @test */
     public function building_one_instance()
     {
-        $instance = (new UserFactoryStory)->create();        
+        $instance = (new UserFactoryStory)->create();
 
         $this->assertInstanceOf(User::class, $instance);
     }
@@ -30,10 +30,18 @@ class FactoryTest extends TestCase
     /** @test */
     public function building_a_collection_containing_multiple_instances()
     {
-        $collection = (new UserFactoryStory)->times(5)->create();        
+        $collection = (new UserFactoryStory)->times(5)->create();
 
         $this->assertInstanceOf(Collection::class, $collection);
         $this->assertCount(5, $collection);
         $this->assertContainsOnlyInstancesOf(User::class, $collection);
+    }
+
+    /** @test */
+    public function can_build_one_instance_using_the_helper_function()
+    {
+        $instance = story(UserFactoryStory::class)->create();
+
+        $this->assertInstanceOf(User::class, $instance);
     }
 }
